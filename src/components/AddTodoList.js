@@ -16,9 +16,10 @@ class AddTodoList extends Component {
     e.preventDefault()
     const { addUserInput } = this.state
 
-    console.log('Наш инпут ', addUserInput)
-
-    this.props.onAddListItem({ addUserInput })
+    this.props.onAddListItem({
+      id: +new Date(),
+      title: addUserInput,
+    })
   }
 
   formValidate = () => {

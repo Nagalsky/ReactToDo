@@ -11,7 +11,6 @@ const TotoList = props => {
       `}
     >
       {data.map((todoListItem, index) => {
-        console.log(todoListItem)
         return (
           <li
             key={index}
@@ -20,6 +19,7 @@ const TotoList = props => {
               border-radius: 4px;
               background-color: #61dafb;
               color: #282c34;
+              word-break: break-word;
               &:not(:first-of-type) {
                 margin-top: 20px;
               }
