@@ -43,7 +43,7 @@ class App extends Component {
     var listToDelete = [3]
 
     for (var i = 0; i < list.length; i++) {
-      if (list.indexOf(list[i].id) !== -1) {
+      if (listToDelete.indexOf(list[i].id) !== -1) {
         list.splice(i, 1)
         i--
       }
