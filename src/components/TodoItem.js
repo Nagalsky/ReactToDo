@@ -94,7 +94,9 @@ class TodoItem extends Component {
               ${buttonStyled};
               margin-left: 10px;
             `}
-            onClick={onRemoveListItem}
+            onClick={() => {
+              onRemoveListItem(data.id)
+            }}
           >
             Remove
           </button>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { remove } from 'lodash'
 import Wrapper from './components/Wrapper'
 import TodoList from './components/TodoList'
 import AddTodoList from './components/AddTodoList'
@@ -33,23 +34,18 @@ class App extends Component {
     const newListItem = [data, ...this.state.list]
 
     // затем обновляем новый массив новостей в this.state.list
+
     this.setState({ list: newListItem })
   }
 
-  handleRemoveListItem = e => {
-    e.preventDefault()
+  handleRemoveListItem = id => {
     const { list } = this.state
 
-    var listToDelete = [3]
+    const newList = remove(list, function(listItem) {
+      return listItem.id !== id
+    })
 
-    for (var i = 0; i < list.length; i++) {
-      if (listToDelete.indexOf(list[i].id) !== -1) {
-        list.splice(i, 1)
-        i--
-      }
-    }
-
-    this.setState({ list: list })
+    this.setState({ list: newList })
   }
 
   render() {
