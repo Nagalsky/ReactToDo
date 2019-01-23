@@ -26,7 +26,6 @@ const buttonStyled = css`
 class TodoItem extends Component {
   state = {
     isDone: false,
-    isShow: true,
   }
 
   onBtnDoneClickHandler = e => {
@@ -45,75 +44,62 @@ class TodoItem extends Component {
     return false
   }
 
-  onBtnShowClickHandler = e => {
-    e.preventDefault()
-
-    this.setState({
-      isShow: !this.state.isShow,
-    })
-  }
-
   render() {
-    const { data } = this.props
-    const { isDone, isShow } = this.state
+    const { data, onRemoveListItem } = this.props
 
     return (
-      <React.Fragment>
-        {isShow && (
-          <li
+      <li
+        css={css`
+          padding: 20px 180px 20px 15px;
+          border-radius: 4px;
+          background-color: #61dafb;
+          color: #282c34;
+          word-break: break-word;
+          position: relative;
+          text-decoration: ${!this.toggleDoneState()
+            ? 'none'
+            : 'line-through'};
+          &:not(:first-of-type) {
+            margin-top: 20px;
+          }
+        `}
+      >
+        <p
+          css={css`
+            margin: 0;
+          `}
+        >
+          {data.title}
+        </p>
+        <div
+          css={css`
+            position: absolute;
+            display: flex;
+            flex-direction: row;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+          `}
+        >
+          <button
             css={css`
-              padding: 20px 180px 20px 15px;
-              border-radius: 4px;
-              background-color: #61dafb;
-              color: #282c34;
-              word-break: break-word;
-              position: relative;
-              text-decoration: ${!this.toggleDoneState()
-                ? 'none'
-                : 'line-through'};
-              &:not(:first-of-type) {
-                margin-top: 20px;
-              }
+              ${buttonStyled};
             `}
+            onClick={this.onBtnDoneClickHandler}
           >
-            <p
-              css={css`
-                margin: 0;
-              `}
-            >
-              {data.title}
-            </p>
-            <div
-              css={css`
-                position: absolute;
-                display: flex;
-                flex-direction: row;
-                right: 15px;
-                top: 50%;
-                transform: translateY(-50%);
-              `}
-            >
-              <button
-                css={css`
-                  ${buttonStyled};
-                `}
-                onClick={this.onBtnDoneClickHandler}
-              >
-                Done
-              </button>
-              <button
-                css={css`
-                  ${buttonStyled};
-                  margin-left: 10px;
-                `}
-                onClick={this.onBtnShowClickHandler}
-              >
-                Remove
-              </button>
-            </div>
-          </li>
-        )}
-      </React.Fragment>
+            Done
+          </button>
+          <button
+            css={css`
+              ${buttonStyled};
+              margin-left: 10px;
+            `}
+            onClick={onRemoveListItem}
+          >
+            Remove
+          </button>
+        </div>
+      </li>
     )
   }
 }

@@ -5,7 +5,7 @@ import TodoItem from './TodoItem'
 
 class TodoList extends Component {
   render() {
-    const { data } = this.props
+    const { data, onRemoveListItem } = this.props
     return (
       <ul
         css={css`
@@ -14,7 +14,11 @@ class TodoList extends Component {
         `}
       >
         {data.map(dataItem => (
-          <TodoItem key={dataItem.id} data={dataItem} />
+          <TodoItem
+            key={dataItem.id}
+            data={dataItem}
+            onRemoveListItem={onRemoveListItem}
+          />
         ))}
       </ul>
     )

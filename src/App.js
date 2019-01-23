@@ -6,8 +6,7 @@ import AddTodoList from './components/AddTodoList'
 const todoListData = [
   {
     id: 1,
-    title:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    title: 'gg',
   },
   {
     id: 2,
@@ -37,11 +36,30 @@ class App extends Component {
     this.setState({ list: newListItem })
   }
 
+  handleRemoveListItem = e => {
+    e.preventDefault()
+    const { list } = this.state
+
+    var listToDelete = [3]
+
+    for (var i = 0; i < list.length; i++) {
+      if (list.indexOf(list[i].id) !== -1) {
+        list.splice(i, 1)
+        i--
+      }
+    }
+
+    this.setState({ list: list })
+  }
+
   render() {
     return (
       <Wrapper>
         <AddTodoList onAddListItem={this.handleAddListItem} />
-        <TodoList data={this.state.list} />
+        <TodoList
+          data={this.state.list}
+          onRemoveListItem={this.handleRemoveListItem}
+        />
         {this.state.list.length ? (
           <strong>Всего новостей: {this.state.list.length}</strong>
         ) : null}
