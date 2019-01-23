@@ -56,9 +56,18 @@ class App extends Component {
           data={this.state.list}
           onRemoveListItem={this.handleRemoveListItem}
         />
-        {this.state.list.length ? (
-          <strong>Всего новостей: {this.state.list.length}</strong>
-        ) : null}
+        <p>
+          Total items:
+          <b>
+            {this.state.list.length ? (
+              <React.Fragment>
+                {this.state.list.length}
+              </React.Fragment>
+            ) : (
+              0
+            )}
+          </b>
+        </p>
       </Wrapper>
     )
   }
