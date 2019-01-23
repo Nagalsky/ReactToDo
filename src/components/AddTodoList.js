@@ -9,7 +9,9 @@ class AddTodoList extends Component {
 
   handleChange = e => {
     const { id, value } = e.currentTarget
-    this.setState({ [id]: value })
+    this.setState({
+      [id]: value,
+    })
   }
 
   onBtnClickHandler = e => {
@@ -19,6 +21,10 @@ class AddTodoList extends Component {
     this.props.onAddListItem({
       id: +new Date(),
       title: addUserInput,
+    })
+
+    this.setState({
+      addUserInput: '',
     })
   }
 
@@ -61,7 +67,7 @@ class AddTodoList extends Component {
               border-color: #61dafb;
             }
           `}
-        />
+        />{' '}
         <button
           type="button"
           disabled={!this.formValidate()}
@@ -90,8 +96,8 @@ class AddTodoList extends Component {
             }
           `}
         >
-          Отправить
-        </button>
+          Отправить{' '}
+        </button>{' '}
       </form>
     )
   }

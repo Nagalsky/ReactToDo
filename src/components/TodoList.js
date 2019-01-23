@@ -1,36 +1,24 @@
+import React, { Component } from 'react'
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
+import TodoItem from './TodoItem'
 
-const TotoList = props => {
-  const { data } = props
-  return (
-    <ul
-      css={css`
-        list-style: none;
-        padding: 0;
-      `}
-    >
-      {data.map((todoListItem, index) => {
-        return (
-          <li
-            key={index}
-            css={css`
-              padding: 20px 15px;
-              border-radius: 4px;
-              background-color: #61dafb;
-              color: #282c34;
-              word-break: break-word;
-              &:not(:first-of-type) {
-                margin-top: 20px;
-              }
-            `}
-          >
-            {todoListItem.title}
-          </li>
-        )
-      })}
-    </ul>
-  )
+class TodoList extends Component {
+  render() {
+    const { data } = this.props
+    return (
+      <ul
+        css={css`
+          list-style: none;
+          padding: 0;
+        `}
+      >
+        {data.map(dataItem => (
+          <TodoItem key={dataItem.id} data={dataItem} />
+        ))}
+      </ul>
+    )
+  }
 }
 
-export default TotoList
+export default TodoList
